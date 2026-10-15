@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il SiTommauro - Blood</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Il SiTommauro</h1>
+        <nav>
+            <a href="fumetti.html">← Torna ai Fumetti</a>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- LOGO E DIDASCALIA INIZIALE -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="img/Blood - Logo.png" alt="Blood Logo" class="utopia-logo" style="max-width: 230px; height: auto; display: block; margin: 0 auto 20px auto;">
+            <p style="font-size: 1.05rem; line-height: 1.6; max-width: 700px; margin: 0 auto; color: #8b0000;">
+                New Angeles, 1954, la polizia sta cercando da diversi anni un pericoloso serial killer capace di assorbire il sangue delle vittime senza ferirle. A questo caso lavoreranno una bestia dai poteri straordinari e una ladra tanto bella quanto astuta.
+            </p>
+        </div>
+
+        <!-- GRIGLIA DI TAVOLE E COPERTINA DI BLOOD -->
+        <div class="utopia-grid">
+            <div class="utopia-thumb fade-in" onclick="apriUtopiaLightbox(0)">
+                <img src="img/Blood Cap1Cover.png" alt="Copertina Capitolo 1">
+                <span class="utopia-page-badge">Cover</span>
+            </div>
+
+            <div class="utopia-thumb fade-in" onclick="apriUtopiaLightbox(1)">
+                <img src="img/Blood Cap1Pag1.png" alt="Pagina 1">
+                <span class="utopia-page-badge">1</span>
+            </div>
+
+            <div class="utopia-thumb fade-in" onclick="apriUtopiaLightbox(2)">
+                <img src="img/Blood Cap1Pag2.png" alt="Pagina 2">
+                <span class="utopia-page-badge">2</span>
+            </div>
+
+            <div class="utopia-thumb fade-in" onclick="apriUtopiaLightbox(3)">
+                <img src="img/Blood Cap1Pag3.png" alt="Pagina 3">
+                <span class="utopia-page-badge">3</span>
+            </div>
+
+            <div class="utopia-thumb fade-in" onclick="apriUtopiaLightbox(4)">
+                <img src="img/Blood Cap1Pag4.png" alt="Pagina 4">
+                <span class="utopia-page-badge">4</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="fumetti.html" class="cat-pill" style="display: inline-block; padding: 10px 20px; text-decoration: none;">Torna all'indice dei fumetti</a>
+        </div>
+    </main>
+
+    <!-- LIGHTBOX DEDICATO PER LO SFOGLIO DI BLOOD -->
+    <div id="utopia-lightbox">
+        <span class="utopia-lightbox-close" onclick="chiudiUtopiaLightbox()">&times;</span>
+        
+        <button class="utopia-lightbox-btn utopia-prev-btn" onclick="cambiaPaginaUtopia(-1)">&#10094;</button>
+        <img id="utopia-lightbox-img" src="" alt="Zoom Pagina">
+        <button class="utopia-lightbox-btn utopia-next-btn" onclick="cambiaPaginaUtopia(1)">&#10095;</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Il SiTommauro</p>
+    </footer>
+
+    <script>
+        const pagineUtopia = [
+            'img/Blood Cap1Cover.png',
+            'img/Blood Cap1Pag1.png',
+            'img/Blood Cap1Pag2.png',
+            'img/Blood Cap1Pag3.png',
+            'img/Blood Cap1Pag4.png'
+        ];
+
+        let indiceUtopiaCorrente = 0;
+
+        function apriUtopiaLightbox(index) {
+            indiceUtopiaCorrente = index;
+            mostraPaginaUtopia();
+            document.getElementById("utopia-lightbox").classList.add("active");
+        }
+
+        function mostraPaginaUtopia() {
+            const lightboxImg = document.getElementById("utopia-lightbox-img");
+            lightboxImg.src = pagineUtopia[indiceUtopiaCorrente];
+        }
+
+        function cambiaPaginaUtopia(direzione) {
+            indiceUtopiaCorrente += direzione;
+            if (indiceUtopiaCorrente < 0) {
+                indiceUtopiaCorrente = pagineUtopia.length - 1;
+            } else if (indiceUtopiaCorrente >= pagineUtopia.length) {
+                indiceUtopiaCorrente = 0;
+            }
+            mostraPaginaUtopia();
+        }
+
+        function chiudiUtopiaLightbox() {
+            document.getElementById("utopia-lightbox").classList.remove("active");
+        }
+
+        document.getElementById("utopia-lightbox").addEventListener("click", function(e) {
+            if (e.target === this) {
+                chiudiUtopiaLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", function(e) {
+            const lightbox = document.getElementById("utopia-lightbox");
+            if (lightbox.classList.contains("active")) {
+                if (e.key === "ArrowLeft") cambiaPaginaUtopia(-1);
+                if (e.key === "ArrowRight") cambiaPaginaUtopia(1);
+                if (e.key === "Escape") chiudiUtopiaLightbox();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const elementiFade = document.querySelectorAll(".fade-in");
+            elementiFade.forEach(el => {
+                el.classList.add("visible");
+            });
+        });
+    </script>
+</body>
+</html>

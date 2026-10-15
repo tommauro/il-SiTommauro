@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il SiTommauro - Fumetti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Il SiTommauro</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="galleria.html">Galleria</a>
+            <a href="fumetti.html">Fumetti</a>
+        </nav>
+    </header>
+
+    <main>
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">Seleziona una storia per iniziare la lettura.</p>
+
+        <!-- VETRINA CON LE COPERTINE DEI FUMETTI -->
+        <div class="comics-grid">
+            
+            <!-- FUMETTO UTOPIA -->
+            <div class="comic-card-item fade-in">
+                <a href="utopia.html">
+                    <div class="comic-thumb" style="background-image: url('img/Utopia - Cover.png');"></div>
+                </a>
+                <div class="comic-title">Utopia</div>
+            </div>
+
+            <!-- FUMETTO BLOOD -->
+            <div class="comic-card-item fade-in">
+                <a href="blood.html">
+                    <div class="comic-thumb" style="background-image: url('img/Blood Cap1Cover.png');"></div>
+                </a>
+                <div class="comic-title">Blood</div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-ig-link">
+            Per avere contenuti nuovi ogni settimana seguitemi su <a href="https://www.instagram.com/_tommauro_" target="_blank">Instagram</a>
+        </div>
+        <p>&copy; 2026 - Il SiTommauro</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const elementiFade = document.querySelectorAll(".fade-in");
+            elementiFade.forEach(el => {
+                el.classList.add("visible");
+            });
+        });
+    </script>
+</body>
+</html>

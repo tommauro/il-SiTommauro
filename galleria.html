@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il SiTommauro - Galleria</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Il SiTommauro</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="galleria.html">Galleria</a>
+            <a href="fumetti.html">Fumetti</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- DIDASCALIA INIZIALE -->
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">Ciao, questa è una galleria con i miei lavori accademici</p>
+
+        <div class="grid-container">
+            <!-- IMMAGINE 1 -->
+            <div class="gallery-item fade-in" onclick="apriLightbox('img/2 - Ahool.png')">
+                <img src="img/2 - Ahool.png" alt="Disegno 1">
+            </div>
+
+            <!-- IMMAGINE 2 -->
+            <div class="gallery-item fade-in" onclick="apriLightbox('img/2 - Chubacabra.jpg')">
+                <img src="img/2 - Chubacabra.jpg" alt="Disegno 2">
+            </div>
+
+            <!-- IMMAGINE 3 -->
+            <div class="gallery-item fade-in" onclick="apriLightbox('img/2 - Enfield Horror.jpg')">
+                <img src="img/2 - Enfield Horror.jpg" alt="Disegno 3">
+            </div>
+        </div>
+
+    <!-- FINESTRA LIGHTBOX PER LO ZOOM DELLA GALLERIA -->
+    <div id="lightbox">
+        <span class="lightbox-close" onclick="chiudiLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Ingrandimento">
+    </div>
+
+    <footer>
+        <div class="footer-ig-link">
+            Per avere contenuti nuovi ogni settimana seguitemi su <a href="https://www.instagram.com/_tommauro_" target="_blank">Instagram</a>
+        </div>
+        <p>&copy; 2026 - Il SiTommauro</p>
+    </footer>
+
+    <!-- SCRIPT PER DISSOLVENZA E LIGHTBOX -->
+    <script>
+        function apriLightbox(srcImmagine) {
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            lightboxImg.src = srcImmagine;
+            lightbox.classList.add("active");
+        }
+
+        function chiudiLightbox() {
+            const lightbox = document.getElementById("lightbox");
+            lightbox.classList.remove("active");
+        }
+
+        document.getElementById("lightbox").addEventListener("click", function(e) {
+            if (e.target === this) {
+                chiudiLightbox();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const elementiFade = document.querySelectorAll(".fade-in");
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elementiFade.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
